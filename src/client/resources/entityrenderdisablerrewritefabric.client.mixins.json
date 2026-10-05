@@ -4,7 +4,22 @@
   "package": "com.victorgponce.entityrenderdisablerrewritefabric.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "EntityRenderMixin"
+    "EntityAccessor",
+    "EntityMixin",
+    "ClientWorldMixin",
+    "ClientEntityHandlerMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "WorldRendererMixin",
+    "EntityTrackingSoundAccessor",
+    "RidingSoundAccessor",
+    "BeeSoundMixin",
+    "MinecartSoundMixin",
+    "GuardianSoundMixin",
+    "SnifferSoundMixin",
+    "ClientPlayNetworkHandlerAccessor",
+    "SoundSystemMixin",
+    "ParticleManagerMixin",
+    "EmitterParticleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

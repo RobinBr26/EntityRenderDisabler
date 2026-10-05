@@ -1,0 +1,13 @@
+{
+  "config.entityrenderdisabler.title": "Entity Render Disabler",
+  "key.category.entityrenderdisabler.general": "Entity Render Disabler",
+  "key.entityrenderdisabler.openConfig": "Konfiguration öffnen",
+  "key.entityrenderdisabler.toggleRender": "Entity-Unterdrückung umschalten",
+  "message.entityrenderdisabler.toggleRender": "Entity-Unterdrückung:",
+  "message.entityrenderdisabler.enabled": "AN",
+  "message.entityrenderdisabler.disabled": "AUS",
+  "config.entityrenderdisabler.general": "Allgemein",
+  "config.entityrenderdisabler.enabled": "Entity-Unterdrückung aktivieren",
+  "config.entityrenderdisabler.enabled.description": "Unterdrückt abgewählte Entity-Typen samt Geräuschen und Effekten. Dein Spieler und die Kamera bleiben aktiv. Reittiere mit sichtbaren Passagieren funktionieren weiter. Auf dem Server bestehen die Entities weiterhin.",
+  "config.entityrenderdisabler.description": "Diese Entity und ihre Effekte anzeigen. Abwählen blendet sie aus, schaltet ihre Geräusche stumm und stoppt ihre Client-Aktivität."
+}

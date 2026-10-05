@@ -1,7 +1,13 @@
 {
   "config.entityrenderdisabler.title": "Entity Render Disabler",
-  "key.entityrenderdisabler.openConfig": "Abrir Configuración",
-  "key.entityrenderdisabler.toggleRender": "Alternar Deshabilitador de Renderizado",
-  "message.entityrenderdisabler.toggleRender": "Deshabilitador de Renderizado de Entidades",
-  "config.entityrenderdisabler.description": "Deshabilitar el renderizado de esta entidad"
+  "key.category.entityrenderdisabler.general": "Entity Render Disabler",
+  "key.entityrenderdisabler.openConfig": "Abrir configuración",
+  "key.entityrenderdisabler.toggleRender": "Alternar supresión de entidades",
+  "message.entityrenderdisabler.toggleRender": "Supresión de entidades:",
+  "message.entityrenderdisabler.enabled": "ACTIVADA",
+  "message.entityrenderdisabler.disabled": "DESACTIVADA",
+  "config.entityrenderdisabler.general": "General",
+  "config.entityrenderdisabler.enabled": "Activar supresión de entidades",
+  "config.entityrenderdisabler.enabled.description": "Suprime los tipos desmarcados, sus sonidos y efectos. Tu jugador y la cámara siguen activos. Los vehículos con pasajeros visibles siguen funcionando. Las entidades siguen existiendo en el servidor.",
+  "config.entityrenderdisabler.description": "Mostrar esta entidad y sus efectos. Desmarcarla la oculta, silencia sus sonidos y detiene su actividad en el cliente."
 }

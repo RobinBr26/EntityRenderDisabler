@@ -1,7 +1,13 @@
 {
   "config.entityrenderdisabler.title": "Entity Render Disabler",
+  "key.category.entityrenderdisabler.general": "Entity Render Disabler",
   "key.entityrenderdisabler.openConfig": "Open Configuration",
-  "key.entityrenderdisabler.toggleRender": "Toggle Render Disabler",
-  "message.entityrenderdisabler.toggleRender": "Toggle Entity Render Disabler",
-  "config.entityrenderdisabler.description": "Toggle rendering for this entity"
+  "key.entityrenderdisabler.toggleRender": "Toggle Entity Suppression",
+  "message.entityrenderdisabler.toggleRender": "Entity Suppression:",
+  "message.entityrenderdisabler.enabled": "ON",
+  "message.entityrenderdisabler.disabled": "OFF",
+  "config.entityrenderdisabler.general": "General",
+  "config.entityrenderdisabler.enabled": "Enable Entity Suppression",
+  "config.entityrenderdisabler.enabled.description": "Suppress unchecked entity types and their sounds and effects. Your player and camera remain active. Vehicles carrying visible passengers keep working. Entities still exist on the server.",
+  "config.entityrenderdisabler.description": "Show this entity and its effects. Uncheck to hide it, mute its sounds and stop its client activity."
 }

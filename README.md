@@ -1,54 +1,28 @@
-# ✨ Entity Render Disabler ✨
+# Entity Render Disabler
 
-Are too many mobs ruining your FPS? Say goodbye to lag spikes with *Entity Render Disabler*!
+Fabric client mod for Minecraft **1.21.11**. Original author: **Ponchisao326**. **Optimized by RobinBr26**.
 
-This mod gives you the power to **enable or disable the rendering of specific entities** directly through a user-friendly configuration menu. By customizing which entities are rendered, you can significantly **reduce FPS lag** and improve performance without compromising gameplay.
+Press **O** to configure entity types and **G** to toggle suppression. A checked entity type stays visible; an unchecked type is suppressed. The existing `config/entityrenderdisabler.json` format remains supported. Fabric Loader **0.17.3 or newer**, Fabric API and Yet Another Config Lib 3 are required; Mod Menu is optional.
 
-## 🎯 **Key Features**:
-- **Multi-Mod Support**: Automatically detects and organizes entities from all installed mods
-- **Organized by Mod**: Entities are neatly categorized by their source mod for easy navigation
-- **Configurable Entity Rendering**: Choose which entities you want to hide or show
-- **Global Toggle**: Quickly enable or disable the entire mod with a single keystroke
-- **Convenient Keybindings**: Open config menu (O key) and toggle mod state (G key) easily
-- **FPS Optimization**: Reduce visual clutter and boost your game's performance
-- **Easy to Use**: Accessible and intuitive configuration powered by YACL
+Suppressed entities are held outside the client's active entity manager. They do not participate in normal world rendering, entity ticks, spatial queries or targeting. This also avoids building render states, names, shadows and outlines for them. Server updates still maintain their position, velocity, equipment and tracked data, so enabling a type or switching the mod off restores the same entities without reconnecting.
 
-Whether you're on a low-end system or just looking to fine-tune your game, *Entity Render Disabler* helps you create a smoother Minecraft experience.
+Entity sound packets, positional sounds with identifiable entity types, spawn sounds, status effects and pickup animations are suppressed. Existing sounds are stopped when the configuration changes, and particle emitters stop producing new particles. Shared generic entity sounds use a spatial index to locate suppressed sources. Experimental minecart movement retains the latest position rather than accumulating interpolation packets.
 
-🛠 **Built for Fabric & NeoForge**
+Your own player and the camera entity stay active. Hidden vehicles carrying visible passengers keep the ticks required for riding; their rendering, sounds and tick-generated particles remain suppressed. This prevents freezing a visible rider or breaking player movement.
 
----
+This is client-side suppression. Entities still exist on the server and can cause damage, collisions, drops and server load. An integrated singleplayer server still simulates them. Independent server particle packets and custom effects without an identifiable entity source cannot always be attributed safely. Particles already emitted can finish their lifetime. Suppression does not guarantee a fixed FPS improvement or eliminate server-side lag.
 
-### 🖼 **Configuration Examples**
-Easily customize which entities are rendered! Here is a screenshot of the mod's configuration menu showing how entities are now organized by mod:
+## Build and verification
 
-- **Example**: Toggle entities on/off using the organized selection list
+Use Java 21:
 
-![Config Entity Selector](https://cdn.modrinth.com/data/57lgto6p/images/87705d0a7838ff307a62ef40e3d442f340dfea6a.png)
+```powershell
+.\gradlew.bat build
+.\gradlew.bat runClientGameTest
+```
 
----
+The distributable mod is `build/libs/entityrenderdisablerrewritefabric-2.0.0.jar`.
 
-### 🔄 **Before vs After – Performance Comparison**
-See the difference for yourself! Below are two comparison images:
+The client integration test creates temporary worlds and checks active-world removal, spatial queries, server movement updates, restoration, entity ID reuse, destruction, player and camera protection, riding, sounds, particle suppression and a population of 5,000 entities. The test mod is kept in its own source set and is excluded from the distributable JAR.
 
-1. **With Entities Rendered**: Full mob rendering causing lower FPS
-2. **Without Entities Rendered**: Selected entities hidden, boosting performance and FPS
-
-![Image 1, Full mob rendering](https://cdn.modrinth.com/data/cached_images/79949ea3d7e067239b549c6cf09dfde79c5d71fa.png)
-
-![Image 2, Selected entities hidden](https://cdn.modrinth.com/data/cached_images/f26c9175fa740ea41a3f321ec3e7e5ace3517cf2.png)
----
-
-### ⌨️ **Controls**
-- Press **O** to open the configuration screen
-- Press **G** to quickly toggle the mod on/off
-
----
-
-Boost your game's performance and eliminate unnecessary rendering – *Entity Render Disabler* is here to make your Minecraft experience smoother than ever!
-
----
-
-### 📃 **Wiki**
-
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ponchisao326/EntityRenderDisabler)
+The original project's copyright notice remains in `LICENSE.txt`.

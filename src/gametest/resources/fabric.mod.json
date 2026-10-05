@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "entityrenderdisabler_tests",
+  "version": "1.0.0",
+  "name": "Entity Render Disabler Tests",
+  "authors": ["Ponchisao326"],
+  "contributors": ["Optimized by RobinBr26"],
+  "environment": "client",
+  "entrypoints": {
+    "fabric-client-gametest": [
+      "com.victorgponce.entityrenderdisablerrewritefabric.client.EntityCullingGameTest"
+    ]
+  }
+}

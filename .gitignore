@@ -1,4 +1,13 @@
 # User-specific stuff
+bin/
+*.launch
+.settings/
+.metadata/
+.classpath
+.project
+eclipse/
+run-data/
+repo/
 .idea/
 
 *.iml
