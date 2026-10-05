@@ -29,6 +29,12 @@ public final class YACLIntegration {
                                 .binding(true, ModConfig::isModEnabled, ModConfig::setModEnabled)
                                 .controller(TickBoxControllerBuilder::create)
                                 .build())
+                        .option(Option.<Boolean>createBuilder()
+                                .name(Text.translatable("config.entityrenderdisabler.soundProtection"))
+                                .description(OptionDescription.of(Text.translatable("config.entityrenderdisabler.soundProtection.description")))
+                                .binding(true, ModConfig::getSoundProtection, ModConfig::setSoundProtection)
+                                .controller(TickBoxControllerBuilder::create)
+                                .build())
                         .build());
 
         for (Map.Entry<String, Map<String, EntityType<?>>> mod : EntityrenderdisablerrewritefabricClient.getEntitiesByMod().entrySet()) {

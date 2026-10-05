@@ -7,6 +7,8 @@
   "message.entityrenderdisabler.enabled": "ON",
   "message.entityrenderdisabler.disabled": "OFF",
   "config.entityrenderdisabler.general": "General",
+  "config.entityrenderdisabler.soundProtection": "Prevent sound dropouts",
+  "config.entityrenderdisabler.soundProtection.description": "Limit repeated mob sounds in crowded areas and keep room for player, block and interface sounds. Under heavy load, closer mob sounds take priority. Turn off to use Minecraft's normal sound allocation.",
   "config.entityrenderdisabler.enabled": "Enable Entity Suppression",
   "config.entityrenderdisabler.enabled.description": "Suppress unchecked entity types and their sounds and effects. Your player and camera remain active. Vehicles carrying visible passengers keep working. Entities still exist on the server.",
   "config.entityrenderdisabler.description": "Show this entity and its effects. Uncheck to hide it, mute its sounds and stop its client activity."

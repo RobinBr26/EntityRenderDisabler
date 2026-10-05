@@ -27,6 +27,7 @@ public final class ModConfig {
     private static final Map<String, Boolean> ENTITY_STATES = new TreeMap<>();
     private static final Set<EntityType<?>> HIDDEN_TYPES = Collections.newSetFromMap(new IdentityHashMap<>());
     private static boolean modEnabled = true;
+    private static boolean soundProtection = true;
     private static long revision;
 
     private ModConfig() {
@@ -65,6 +66,21 @@ public final class ModConfig {
         return modEnabled;
     }
 
+    public static boolean isSoundProtectionEnabled() {
+        return modEnabled && soundProtection;
+    }
+
+    public static boolean getSoundProtection() {
+        return soundProtection;
+    }
+
+    public static void setSoundProtection(boolean enabled) {
+        if (soundProtection != enabled) {
+            soundProtection = enabled;
+            revision++;
+        }
+    }
+
     public static void setModEnabled(boolean enabled) {
         if (modEnabled != enabled) {
             modEnabled = enabled;
@@ -80,6 +96,7 @@ public final class ModConfig {
         ENTITY_STATES.clear();
         HIDDEN_TYPES.clear();
         modEnabled = true;
+        soundProtection = true;
         if (Files.exists(CONFIG_FILE)) {
             try (var reader = Files.newBufferedReader(CONFIG_FILE, StandardCharsets.UTF_8)) {
                 JsonObject json = GSON.fromJson(reader, JsonObject.class);
@@ -94,6 +111,10 @@ public final class ModConfig {
                                 ENTITY_STATES.put(entry.getKey(), entry.getValue().getAsBoolean());
                             }
                         });
+                    }
+                    if (json.has("soundProtection") && json.get("soundProtection").isJsonPrimitive()
+                            && json.getAsJsonPrimitive("soundProtection").isBoolean()) {
+                        soundProtection = json.get("soundProtection").getAsBoolean();
                     }
                 }
             } catch (IOException | RuntimeException exception) {
@@ -117,6 +138,7 @@ public final class ModConfig {
             Files.createDirectories(CONFIG_FILE.getParent());
             JsonObject json = new JsonObject();
             json.addProperty("modEnabled", modEnabled);
+            json.addProperty("soundProtection", soundProtection);
             json.add("entities", GSON.toJsonTree(ENTITY_STATES));
             try (var writer = Files.newBufferedWriter(temporary, StandardCharsets.UTF_8)) {
                 GSON.toJson(json, writer);

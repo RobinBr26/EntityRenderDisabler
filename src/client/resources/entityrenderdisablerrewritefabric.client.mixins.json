@@ -18,6 +18,9 @@
     "SnifferSoundMixin",
     "ClientPlayNetworkHandlerAccessor",
     "SoundSystemMixin",
+    "SoundEngineMixin",
+    "ChannelMixin",
+    "SourceManagerAccessor",
     "ParticleManagerMixin",
     "EmitterParticleMixin"
   ],

@@ -7,6 +7,8 @@
   "message.entityrenderdisabler.enabled": "ACTIVADA",
   "message.entityrenderdisabler.disabled": "DESACTIVADA",
   "config.entityrenderdisabler.general": "General",
+  "config.entityrenderdisabler.soundProtection": "Evitar cortes de sonido",
+  "config.entityrenderdisabler.soundProtection.description": "Limita los sonidos repetidos de criaturas y reserva espacio para sonidos del jugador, bloques e interfaz. Con mucha carga se priorizan las criaturas más cercanas. Desactiva esta opción para usar la asignación normal de Minecraft.",
   "config.entityrenderdisabler.enabled": "Activar supresión de entidades",
   "config.entityrenderdisabler.enabled.description": "Suprime los tipos desmarcados, sus sonidos y efectos. Tu jugador y la cámara siguen activos. Los vehículos con pasajeros visibles siguen funcionando. Las entidades siguen existiendo en el servidor.",
   "config.entityrenderdisabler.description": "Mostrar esta entidad y sus efectos. Desmarcarla la oculta, silencia sus sonidos y detiene su actividad en el cliente."

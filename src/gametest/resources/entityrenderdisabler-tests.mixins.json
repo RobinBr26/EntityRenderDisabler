@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "package": "com.victorgponce.entityrenderdisablerrewritefabric.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "SoundManagerTestAccessor",
+    "SoundSystemTestAccessor",
+    "ChannelTestAccessor"
+  ]
+}

@@ -7,6 +7,8 @@
   "message.entityrenderdisabler.enabled": "AN",
   "message.entityrenderdisabler.disabled": "AUS",
   "config.entityrenderdisabler.general": "Allgemein",
+  "config.entityrenderdisabler.soundProtection": "Tonaussetzer verhindern",
+  "config.entityrenderdisabler.soundProtection.description": "Begrenzt wiederholte Mob-Geräusche in großen Gruppen und hält Platz für Spieler-, Block- und Bediengeräusche frei. Bei hoher Auslastung haben nähere Mob-Geräusche Vorrang. Abschalten nutzt Minecrafts normale Kanalvergabe.",
   "config.entityrenderdisabler.enabled": "Entity-Unterdrückung aktivieren",
   "config.entityrenderdisabler.enabled.description": "Unterdrückt abgewählte Entity-Typen samt Geräuschen und Effekten. Dein Spieler und die Kamera bleiben aktiv. Reittiere mit sichtbaren Passagieren funktionieren weiter. Auf dem Server bestehen die Entities weiterhin.",
   "config.entityrenderdisabler.description": "Diese Entity und ihre Effekte anzeigen. Abwählen blendet sie aus, schaltet ihre Geräusche stumm und stoppt ihre Client-Aktivität."
