@@ -17,6 +17,7 @@ public final class EntitySounds {
         }
         ClientWorld world = MinecraftClient.getInstance().world;
         return world != null && !sound.isRelative()
-                && EntityCulling.get(world).suppressPositionalSound(sound.getId(), sound.getX(), sound.getY(), sound.getZ());
+                && (CampfireCulling.isSoundSuppressed(sound, world)
+                || EntityCulling.get(world).suppressPositionalSound(sound.getId(), sound.getX(), sound.getY(), sound.getZ()));
     }
 }

@@ -5,6 +5,8 @@
   "client": [
     "SoundManagerTestAccessor",
     "SoundSystemTestAccessor",
-    "ChannelTestAccessor"
+    "ChannelTestAccessor",
+    "ParticleManagerTestAccessor",
+    "WorldRendererTestMixin"
   ]
 }

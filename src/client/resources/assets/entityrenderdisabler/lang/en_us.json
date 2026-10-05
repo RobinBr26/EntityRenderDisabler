@@ -7,6 +7,8 @@
   "message.entityrenderdisabler.enabled": "ON",
   "message.entityrenderdisabler.disabled": "OFF",
   "config.entityrenderdisabler.general": "General",
+  "config.entityrenderdisabler.campfires": "Campfires",
+  "config.entityrenderdisabler.campfires.description": "Show this campfire. Uncheck to hide the block, flames, cooking items, smoke and crackling sounds. Cooking, collision and lighting continue normally. Existing campfire smoke is removed too.",
   "config.entityrenderdisabler.soundProtection": "Prevent sound dropouts",
   "config.entityrenderdisabler.soundProtection.description": "Limit repeated mob sounds in crowded areas and keep room for player, block and interface sounds. Under heavy load, closer mob sounds take priority. Turn off to use Minecraft's normal sound allocation.",
   "config.entityrenderdisabler.enabled": "Enable Entity Suppression",

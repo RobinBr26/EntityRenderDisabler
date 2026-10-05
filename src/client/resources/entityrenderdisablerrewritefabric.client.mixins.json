@@ -22,7 +22,12 @@
     "ChannelMixin",
     "SourceManagerAccessor",
     "ParticleManagerMixin",
-    "EmitterParticleMixin"
+    "EmitterParticleMixin",
+    "BlockModelsMixin",
+    "CampfireBlockMixin",
+    "CampfireBlockEntityMixin",
+    "BlockEntityRenderManagerMixin",
+    "CampfireSmokeParticleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

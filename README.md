@@ -10,6 +10,8 @@ Entity sound packets, positional sounds with identifiable entity types, spawn so
 
 Your own player and the camera entity stay active. Hidden vehicles carrying visible passengers keep the ticks required for riding; their rendering, sounds and tick-generated particles remain suppressed. This prevents freezing a visible rider or breaking player movement.
 
+The Minecraft category also includes separate **Campfire** and **Soul Campfire** switches under **Campfires**. Unchecking either hides its block model, flames and cooking items, skips its client particle tick, and suppresses smoke and crackling sounds. Smoke already emitted by that campfire is removed on its next particle tick. Switching visibility or the global toggle rebuilds the world render data automatically. Block states, cooking inventories, server cooking, collision and lighting remain intact. Both types stay visible by default.
+
 The **Prevent sound dropouts** option is enabled by default. It limits repeated sounds from visible mobs before they allocate an audio channel, uses the device's actual channel capacity, and reserves space for player, block and interface sounds. Under load, closer mob sounds and combat effects take priority over distant ambient loops. Important sounds can replace a mob sound when the pool is full. Native channels are released on the audio thread before a replacement is allocated; delayed sounds and ticking loops from suppressed entities are cleared as well. This also works when no entity types are hidden and can be disabled separately in the configuration. It addresses sound-channel exhaustion, rather than device or driver failures.
 
 This is client-side suppression. Entities still exist on the server and can cause damage, collisions, drops and server load. An integrated singleplayer server still simulates them. Independent server particle packets and custom effects without an identifiable entity source cannot always be attributed safely. Particles already emitted can finish their lifetime. Suppression does not guarantee a fixed FPS improvement or eliminate server-side lag.
@@ -23,8 +25,8 @@ Use Java 21:
 .\gradlew.bat runClientGameTest
 ```
 
-The distributable mod is `build/libs/entityrenderdisablerrewritefabric-2.0.1.jar`.
+The distributable mod is `build/libs/entityrenderdisablerrewritefabric-2.0.2.jar`.
 
-The client integration test creates temporary worlds and checks active-world removal, spatial queries, server movement updates, restoration, entity ID reuse, destruction, player and camera protection, riding, sounds, particle suppression and a population of 5,000 entities. Audio tests send 1,000 repeated mob sounds through the real engine, fill its channel pool, check that player, block and interface sounds still start, and verify native channel release and cancelled stream cleanup. The test mod is kept in its own source set and is excluded from the distributable JAR.
+The client integration test creates temporary worlds and checks active-world removal, spatial queries, server movement updates, restoration, entity ID reuse, destruction, player and camera protection, riding, sounds, particle suppression and a population of 5,000 entities. Audio tests send 1,000 repeated mob sounds through the real engine, fill its channel pool, check that player, block and interface sounds still start, and verify native channel release and cancelled stream cleanup. Campfire tests check independent visibility, emitted geometry, cached models, cooking items, smoke, crackling, automatic render rebuilds and restoration. The test mod is kept in its own source set and is excluded from the distributable JAR.
 
 The original project's copyright notice remains in `LICENSE.txt`.

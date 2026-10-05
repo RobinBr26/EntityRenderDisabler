@@ -7,6 +7,8 @@
   "message.entityrenderdisabler.enabled": "ACTIVADA",
   "message.entityrenderdisabler.disabled": "DESACTIVADA",
   "config.entityrenderdisabler.general": "General",
+  "config.entityrenderdisabler.campfires": "Hogueras",
+  "config.entityrenderdisabler.campfires.description": "Mostrar esta hoguera. Desmarcar oculta el bloque, las llamas, los alimentos y el humo, y silencia el crepitar. La cocción, la colisión y la iluminación siguen funcionando. También se elimina el humo ya generado.",
   "config.entityrenderdisabler.soundProtection": "Evitar cortes de sonido",
   "config.entityrenderdisabler.soundProtection.description": "Limita los sonidos repetidos de criaturas y reserva espacio para sonidos del jugador, bloques e interfaz. Con mucha carga se priorizan las criaturas más cercanas. Desactiva esta opción para usar la asignación normal de Minecraft.",
   "config.entityrenderdisabler.enabled": "Activar supresión de entidades",

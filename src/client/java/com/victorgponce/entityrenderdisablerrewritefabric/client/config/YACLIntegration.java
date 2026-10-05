@@ -9,6 +9,9 @@ import dev.isxander.yacl3.api.YetAnotherConfigLib;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.EntityType;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 
 import java.util.Map;
@@ -45,10 +48,24 @@ public final class YACLIntegration {
                     .binding(true, () -> ModConfig.isEntityVisible(id), value -> ModConfig.setEntityVisible(id, value))
                     .controller(TickBoxControllerBuilder::create)
                     .build()));
-            builder.category(ConfigCategory.createBuilder()
+            ConfigCategory.Builder category = ConfigCategory.createBuilder()
                     .name(Text.literal(mod.getKey()))
-                    .group(group.build())
-                    .build());
+                    .group(group.build());
+            if (mod.getKey().equals("minecraft")) {
+                OptionGroup.Builder campfires = OptionGroup.createBuilder()
+                        .name(Text.translatable("config.entityrenderdisabler.campfires"));
+                for (Block block : new Block[]{Blocks.CAMPFIRE, Blocks.SOUL_CAMPFIRE}) {
+                    String id = Registries.BLOCK.getId(block).toString();
+                    campfires.option(Option.<Boolean>createBuilder()
+                            .name(block.getName())
+                            .description(OptionDescription.of(Text.translatable("config.entityrenderdisabler.campfires.description"), Text.literal(id)))
+                            .binding(true, () -> ModConfig.isBlockVisible(id), value -> ModConfig.setBlockVisible(id, value))
+                            .controller(TickBoxControllerBuilder::create)
+                            .build());
+                }
+                category.group(campfires.build());
+            }
+            builder.category(category.build());
         }
         return builder.build().generateScreen(parent);
     }

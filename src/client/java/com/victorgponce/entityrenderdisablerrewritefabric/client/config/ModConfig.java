@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import com.victorgponce.entityrenderdisablerrewritefabric.client.EntityrenderdisablerrewritefabricClient;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
@@ -26,6 +28,8 @@ public final class ModConfig {
             .resolve(EntityrenderdisablerrewritefabricClient.MOD_ID + ".json");
     private static final Map<String, Boolean> ENTITY_STATES = new TreeMap<>();
     private static final Set<EntityType<?>> HIDDEN_TYPES = Collections.newSetFromMap(new IdentityHashMap<>());
+    private static final Map<String, Boolean> BLOCK_STATES = new TreeMap<>();
+    private static volatile int hiddenCampfires;
     private static boolean modEnabled = true;
     private static boolean soundProtection = true;
     private static long revision;
@@ -43,6 +47,36 @@ public final class ModConfig {
 
     public static boolean hasHiddenTypes() {
         return modEnabled && !HIDDEN_TYPES.isEmpty();
+    }
+
+    public static boolean isBlockVisible(String blockId) {
+        return BLOCK_STATES.getOrDefault(blockId, true);
+    }
+
+    public static void setBlockVisible(String blockId, boolean visible) {
+        if (!blockId.equals("minecraft:campfire") && !blockId.equals("minecraft:soul_campfire")) {
+            throw new IllegalArgumentException("Unsupported block: " + blockId);
+        }
+        if (isBlockVisible(blockId) != visible) {
+            BLOCK_STATES.put(blockId, visible);
+            updateHiddenCampfires();
+            revision++;
+        }
+    }
+
+    public static boolean isBlockHidden(BlockState state) {
+        int hidden = hiddenCampfires;
+        return hidden != 0 && (state.isOf(Blocks.CAMPFIRE) && (hidden & 1) != 0
+                || state.isOf(Blocks.SOUL_CAMPFIRE) && (hidden & 2) != 0);
+    }
+
+    public static int getHiddenCampfires() {
+        return hiddenCampfires;
+    }
+
+    private static void updateHiddenCampfires() {
+        hiddenCampfires = modEnabled ? (isBlockVisible("minecraft:campfire") ? 0 : 1)
+                | (isBlockVisible("minecraft:soul_campfire") ? 0 : 2) : 0;
     }
 
     public static void setEntityVisible(String entityId, boolean visible) {
@@ -84,6 +118,7 @@ public final class ModConfig {
     public static void setModEnabled(boolean enabled) {
         if (modEnabled != enabled) {
             modEnabled = enabled;
+            updateHiddenCampfires();
             revision++;
         }
     }
@@ -95,6 +130,7 @@ public final class ModConfig {
     public static void load() {
         ENTITY_STATES.clear();
         HIDDEN_TYPES.clear();
+        BLOCK_STATES.clear();
         modEnabled = true;
         soundProtection = true;
         if (Files.exists(CONFIG_FILE)) {
@@ -116,6 +152,13 @@ public final class ModConfig {
                             && json.getAsJsonPrimitive("soundProtection").isBoolean()) {
                         soundProtection = json.get("soundProtection").getAsBoolean();
                     }
+                    if (json.has("blocks") && json.get("blocks").isJsonObject()) {
+                        json.getAsJsonObject("blocks").entrySet().forEach(entry -> {
+                            if (entry.getValue().isJsonPrimitive() && entry.getValue().getAsJsonPrimitive().isBoolean()) {
+                                BLOCK_STATES.put(entry.getKey(), entry.getValue().getAsBoolean());
+                            }
+                        });
+                    }
                 }
             } catch (IOException | RuntimeException exception) {
                 EntityrenderdisablerrewritefabricClient.LOGGER.error("Failed to load entity configuration", exception);
@@ -129,6 +172,7 @@ public final class ModConfig {
                 HIDDEN_TYPES.add(Registries.ENTITY_TYPE.get(id));
             }
         });
+        updateHiddenCampfires();
         revision++;
     }
 
@@ -140,6 +184,7 @@ public final class ModConfig {
             json.addProperty("modEnabled", modEnabled);
             json.addProperty("soundProtection", soundProtection);
             json.add("entities", GSON.toJsonTree(ENTITY_STATES));
+            json.add("blocks", GSON.toJsonTree(BLOCK_STATES));
             try (var writer = Files.newBufferedWriter(temporary, StandardCharsets.UTF_8)) {
                 GSON.toJson(json, writer);
             }

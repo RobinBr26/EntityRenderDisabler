@@ -7,6 +7,8 @@
   "message.entityrenderdisabler.enabled": "AN",
   "message.entityrenderdisabler.disabled": "AUS",
   "config.entityrenderdisabler.general": "Allgemein",
+  "config.entityrenderdisabler.campfires": "Lagerfeuer",
+  "config.entityrenderdisabler.campfires.description": "Dieses Lagerfeuer anzeigen. Abwählen blendet Block, Flammen, Kochitems und Rauch aus und unterdrückt das Knistern. Kochen, Kollision und Beleuchtung bleiben erhalten. Bereits erzeugter Lagerfeuerrauch wird ebenfalls entfernt.",
   "config.entityrenderdisabler.soundProtection": "Tonaussetzer verhindern",
   "config.entityrenderdisabler.soundProtection.description": "Begrenzt wiederholte Mob-Geräusche in großen Gruppen und hält Platz für Spieler-, Block- und Bediengeräusche frei. Bei hoher Auslastung haben nähere Mob-Geräusche Vorrang. Abschalten nutzt Minecrafts normale Kanalvergabe.",
   "config.entityrenderdisabler.enabled": "Entity-Unterdrückung aktivieren",

@@ -56,6 +56,7 @@ public class EntityCullingGameTest implements FabricClientGameTest {
             context.runOnClient(this::testSpecialSoundsAndPackets);
             context.runOnClient(this::testPopulation);
             context.runOnClient(SoundProtectionGameTest::runTests);
+            context.runOnClient(CampfireCullingGameTest::runTests);
             context.runOnClient(client -> check(YACLIntegration.createConfigScreen(null) != null, "Configuration screen failed"));
         }
         try (var singleplayer = context.worldBuilder().create()) {
